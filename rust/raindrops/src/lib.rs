@@ -23,7 +23,7 @@ pub fn raindrops(n: i32) -> String {
         if n % 7 == 0 { Name("Plong") } else { Number },
     );
     match sounds {
-        (Number, Number, Number) => format!("{}", n),
+        (Number, Number, Number) => n.to_string(),
         (a, b, c)                => format!("{}{}{}", a, b, c),
     }
 }

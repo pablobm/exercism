@@ -7,7 +7,7 @@ pub fn reply(input: &str) -> &str {
     else if yelling {
         "Whoa, chill out!"
     }
-    else if input.chars().last().unwrap() == '?' {
+    else if input.ends_with('?') {
         "Sure."
     }
     else {

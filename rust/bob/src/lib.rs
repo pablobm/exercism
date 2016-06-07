@@ -1,7 +1,7 @@
 pub fn reply(input: &str) -> &str {
     let yelling = input.to_uppercase() == input;
 
-    if input == "" {
+    if input.is_empty() {
         "Fine. Be that way!"
     }
     else if yelling {

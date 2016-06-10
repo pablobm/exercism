@@ -3,7 +3,7 @@ pub fn square_of_sum(num: u32) -> u32 {
 }
 
 pub fn sum_of_squares(num: u32) -> u32 {
-    (1..num+1).fold(0, |acc, n| acc + n.pow(2))
+    (1..num+1).map(|n| n.pow(2) ).fold(0, |acc, n| acc + n)
 }
 
 pub fn difference(num: u32) -> u32 {

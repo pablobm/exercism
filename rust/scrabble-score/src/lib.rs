@@ -1,7 +1,7 @@
 pub fn score(word: &str) -> u32 {
     word.to_lowercase().chars()
         .map(letter_score)
-        .fold(0, |acc, ch| acc + ch)
+        .fold(0, std::ops::Add::add)
 }
 
 fn letter_score(letter: char) -> u32 {

@@ -1,11 +1,11 @@
 pub fn score(word: &str) -> u32 {
-    word.chars()
+    word.to_lowercase().chars()
         .map(|ch| letter_score(ch) )
         .fold(0, |acc, ch| acc + ch)
 }
 
 fn letter_score(letter: char) -> u32 {
-    match letter.to_lowercase().next().unwrap() {
+    match letter {
         'a' | 'e' | 'i' | 'o' | 'u' |
         'l' | 'n' | 'r' | 's' | 't'
             => 1,

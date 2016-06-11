@@ -1,6 +1,6 @@
 pub fn score(word: &str) -> u32 {
     word.to_lowercase().chars()
-        .map(|ch| letter_score(ch) )
+        .map(letter_score)
         .fold(0, |acc, ch| acc + ch)
 }
 

@@ -18,7 +18,7 @@ pub fn word_count(phrase: &str) -> HashMap<String, u32> {
 }
 
 fn is_word_character(ch: char) -> bool {
-    ch.is_alphabetic() || ch.is_numeric()
+    ch.is_alphanumeric()
 }
 
 fn is_separator(ch: char) -> bool {

@@ -16,7 +16,8 @@ defmodule Words do
 
   @spec count_words([String.t]) :: map
   defp count_words([word | t]) do
-    Map.update(count_words(t), word, 1, &(&1 + 1))
+    count_words(t)
+    |> Map.update(word, 1, &(&1 + 1))
   end
 
   @spec count_words([]) :: map

@@ -19,6 +19,7 @@ defmodule Words do
     Map.update(count_words(t), word, 1, &(&1 + 1))
   end
 
+  @spec count_words([]) :: map
   defp count_words([]) do
     %{}
   end

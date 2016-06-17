@@ -7,7 +7,7 @@ defmodule Acronym do
   def abbreviate(string) do
     Regex.scan(~r/[A-z][a-z]+/, string)
     |> List.flatten
-    |> Enum.map(fn word -> String.at(word, 0) end)
+    |> Enum.map(&(String.at(&1, 0)))
     |> Enum.join
     |> String.upcase
   end

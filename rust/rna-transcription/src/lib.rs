@@ -26,12 +26,19 @@ impl DeoxyribonucleicAcid {
     }
 
     pub fn to_rna(&self) -> RibonucleicAcid {
-        let rna_sequence = self.sequence
-            .replace("A", "U")
-            .replace("T", "A")
-            .replace("G", "X")
-            .replace("C", "G")
-            .replace("X", "C");
+        let rna_sequence = self.sequence.chars()
+            .map(transcribe)
+            .collect::<String>();
         RibonucleicAcid::new(rna_sequence.as_str())
+    }
+}
+
+fn transcribe(nucleotide: char) -> char {
+    match nucleotide {
+        'A' => 'U',
+        'T' => 'A',
+        'G' => 'C',
+        'C' => 'G',
+        _ => panic!("I don't know how to transcribe '{}'", nucleotide),
     }
 }

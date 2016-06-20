@@ -10,7 +10,7 @@ defmodule Words do
     |> String.downcase
     |> String.replace(~r/[^-\p{L}\p{N} ]+/u, " ")
     |> String.split(" ")
-    |> Enum.filter(fn(word) -> word != "" end)
+    |> Enum.filter(&(&1 != ""))
     |> count_words
   end
 

@@ -38,7 +38,6 @@ impl ToString for Roman {
 
         sections.iter().map(|x| x.clone() ).collect()
     }
-
 }
 
 fn to_units_string(value: u16) -> String {

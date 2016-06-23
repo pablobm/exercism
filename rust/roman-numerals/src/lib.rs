@@ -4,14 +4,18 @@ pub struct Roman {
     value: u16,
 }
 
+// Not implementing `std::convert::From` because
+// its contract specifies that it must not fail
 impl Roman {
     pub fn from(value: u16) -> Roman {
         Roman {
             value: value,
         }
     }
+}
 
-    pub fn to_string(&self) -> String {
+impl ToString for Roman {
+    fn to_string(&self) -> String {
         let mut sections = LinkedList::new();
 
         let mut quotient = self.value;

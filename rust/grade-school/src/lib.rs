@@ -1,46 +1,31 @@
-pub struct School {
-    students: Vec<Student>,
-}
+use std::collections::HashMap;
 
-pub struct Student {
-    grade: u16,
-    name: String,
+pub struct School {
+    students: HashMap<u16, Vec<String>>,
 }
 
 impl School {
     pub fn new() -> School {
-        School{
-            students: vec![],
+        School {
+            students: HashMap::new(),
         }
     }
 
     pub fn grades(&self) -> Vec<u16> {
-        let mut grades : Vec<u16> = self.students.iter()
-            .map(|s| s.grade )
+        let mut grades : Vec<u16> = self.students.keys()
+            .map(|x| x.clone())
             .collect();
         grades.sort();
-        grades.dedup();
         grades
     }
 
     pub fn add(&mut self, grade: u16, name: &str) {
-        self.students.push(Student{
-            grade: grade,
-            name: name.to_string(),
-        })
+        let mut names = self.students.entry(grade).or_insert(vec![]);
+        names.push(name.to_string());
+        names.sort();
     }
 
-    pub fn grade(&self, grade: u16) -> Option<Vec<String>> {
-        let names : Vec<String> = self.students.iter()
-            .filter(|s| s.grade == grade)
-            .map(|s| s.name.clone())
-            .collect();
-
-        if names.len() == 0 {
-            None
-        }
-        else {
-            Some(names)
-        }
+    pub fn grade(&self, grade: u16) -> Option<&Vec<String>> {
+        self.students.get(&grade)
     }
 }

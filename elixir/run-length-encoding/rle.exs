@@ -8,11 +8,46 @@ defmodule RunLengthEncoder do
   """
   @spec encode(String.t) :: String.t
   def encode(string) do
-
+    string
+    |> String.graphemes
+    |> Enum.chunk_by(&(&1))
+    |> Enum.map(&(Integer.to_string(length(&1)) <> List.first(&1)))
+    |> Enum.join
   end
 
   @spec decode(String.t) :: String.t
   def decode(string) do
-
+    Regex.scan(~r/\p{N}+|\P{N}+/, string)
+    |> List.flatten
+    |> numbers_as_numbers
+    |> to_pairs
+    |> expand_to_string
   end
+
+  defp numbers_as_numbers(graphemes) do
+    Enum.map graphemes, fn (g) ->
+      if Regex.match?(~r/\p{N}/, g) do
+        String.to_integer(g)
+      else
+        g
+      end
+    end
+  end
+
+  defp to_pairs([first, second | rest]) do
+    Enum.concat([[first, second]], to_pairs(rest))
+  end
+
+  defp to_pairs([]) do
+    []
+  end
+
+  defp expand_to_string([[count, grapheme] | rest]) do
+    String.duplicate(grapheme, count) <> expand_to_string(rest)
+  end
+
+  defp expand_to_string([]) do
+    ""
+  end
+
 end

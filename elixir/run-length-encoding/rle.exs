@@ -10,8 +10,9 @@ defmodule RunLengthEncoder do
   def encode(string) do
     string
     |> String.graphemes
-    |> Enum.chunk_by(&(&1))
-    |> Enum.map(&(Integer.to_string(length(&1)) <> List.first(&1)))
+    |> split_into_identical_groups
+    |> to_count_and_item_pairs
+    |> List.flatten
     |> Enum.join
   end
 
@@ -22,6 +23,16 @@ defmodule RunLengthEncoder do
     |> numbers_as_numbers
     |> to_pairs
     |> expand_to_string
+  end
+
+  defp split_into_identical_groups(items) do
+    Enum.chunk_by(items, &(&1))
+  end
+
+  defp to_count_and_item_pairs(items) do
+    Enum.map(items, &(
+      [Integer.to_string(length(&1)), List.first(&1)]
+    ))
   end
 
   defp numbers_as_numbers(graphemes) do

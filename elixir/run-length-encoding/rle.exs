@@ -20,7 +20,7 @@ defmodule RunLengthEncoder do
   def decode(string) do
     Regex.scan(~r/\p{N}+|\P{N}+/, string)
     |> List.flatten
-    |> numbers_as_numbers
+    |> number_strings_as_numbers
     |> to_pairs
     |> expand_to_string
   end
@@ -35,7 +35,7 @@ defmodule RunLengthEncoder do
     ))
   end
 
-  defp numbers_as_numbers(graphemes) do
+  defp number_strings_as_numbers(graphemes) do
     Enum.map graphemes, fn (g) ->
       if Regex.match?(~r/\p{N}/, g) do
         String.to_integer(g)

@@ -1,3 +1,7 @@
+use std::ops::Sub;
+
+#[derive(Copy)]
+#[derive(Clone)]
 pub struct ChessPosition {
     rank: i8,
     file: i8,
@@ -20,6 +24,16 @@ impl ChessPosition {
     }
 }
 
+impl Sub for ChessPosition {
+    type Output = ChessPosition;
+    fn sub(self, rhs: ChessPosition) -> Self::Output {
+        ChessPosition {
+            rank: self.rank - rhs.rank,
+            file: self.file - rhs.file,
+        }
+    }
+}
+
 impl Queen {
     pub fn new(pos: ChessPosition) -> Queen {
         Queen {
@@ -28,9 +42,8 @@ impl Queen {
     }
 
     pub fn can_attack(&self, piece: &Queen) -> bool {
-        let rdiff = (piece.pos.rank - self.pos.rank).abs();
-        let fdiff = (piece.pos.file - self.pos.file).abs();
-
-        rdiff == 0 || fdiff == 0 || rdiff == fdiff
+        let diff = piece.pos - self.pos;
+        diff.rank == 0 || diff.file == 0 ||
+            diff.rank.abs() == diff.file.abs()
     }
 }

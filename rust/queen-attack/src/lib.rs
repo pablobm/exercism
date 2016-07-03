@@ -1,6 +1,6 @@
 pub struct ChessPosition {
-    rank: i16,
-    file: i16,
+    rank: i8,
+    file: i8,
 }
 
 pub struct Queen {
@@ -8,7 +8,7 @@ pub struct Queen {
 }
 
 impl ChessPosition {
-    pub fn new(rank: i16, file: i16)
+    pub fn new(rank: i8, file: i8)
         -> Result<ChessPosition, &'static str>
     {
         match (rank, file) {

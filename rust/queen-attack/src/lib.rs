@@ -1,6 +1,6 @@
 pub struct ChessPosition {
-    x: i16,
-    y: i16,
+    rank: i16,
+    file: i16,
 }
 
 pub struct Queen {
@@ -8,10 +8,14 @@ pub struct Queen {
 }
 
 impl ChessPosition {
-    pub fn new(x: i16, y: i16) -> Result<ChessPosition, &'static str> {
-        match (x, y) {
-            (0...7, 0...7) => Ok(ChessPosition{ x: x, y: y }),
-            _ => Err("Invalid Position"),
+    pub fn new(rank: i16, file: i16)
+        -> Result<ChessPosition, &'static str>
+    {
+        match (rank, file) {
+            (0...7, 0...7)
+                => Ok(ChessPosition{ rank: rank, file: file }),
+            _
+                => Err("Invalid Position"),
         }
     }
 }
@@ -24,9 +28,9 @@ impl Queen {
     }
 
     pub fn can_attack(&self, piece: &Queen) -> bool {
-        let xdiff = (piece.pos.x - self.pos.x).abs();
-        let ydiff = (piece.pos.y - self.pos.y).abs();
+        let rdiff = (piece.pos.rank - self.pos.rank).abs();
+        let fdiff = (piece.pos.file - self.pos.file).abs();
 
-        xdiff == 0 || ydiff == 0 || xdiff == ydiff
+        rdiff == 0 || fdiff == 0 || rdiff == fdiff
     }
 }

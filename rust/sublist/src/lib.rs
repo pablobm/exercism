@@ -24,27 +24,13 @@ pub fn sublist<T>(l1: &[T], l2: &[T]) -> Comparison
     else if l2.len() == 0 {
         Comparison::Superlist
     }
-    else if l1.len() < l2.len() {
-        for wlen in l1.len()..l2.len() {
-            for window in l2.windows(wlen) {
-                if *window == *l1 {
-                    return Comparison::Sublist
-                }
-            }
-        }
-        return Comparison::Unequal
+    else if l1.len() < l2.len() && l2.windows(l1.len()).any(|w| *w == *l1) {
+        Comparison::Sublist
     }
-    else if l1.len() > l2.len() {
-        for wlen in l2.len()..l1.len() {
-            for window in l1.windows(wlen) {
-                if *window == *l2 {
-                    return Comparison::Superlist
-                }
-            }
-        }
-        return Comparison::Unequal
+    else if l1.len() > l2.len() && l1.windows(l2.len()).any(|w| *w == *l2) {
+        Comparison::Superlist
     }
     else {
-        panic!("No idea of what's going on");
+        Comparison::Unequal
     }
 }

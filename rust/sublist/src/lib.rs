@@ -7,16 +7,22 @@ pub enum Comparison {
     Unequal,
 }
 
+pub fn is_sublist<T>(l1: &[T], l2: &[T]) -> bool
+    where T: PartialEq
+{
+    l1.is_empty() || l2.windows(l1.len()).any(|w| *w == *l1)
+}
+
 pub fn sublist<T>(l1: &[T], l2: &[T]) -> Comparison
     where T: PartialEq
 {
     if *l1 == *l2 {
         Comparison::Equal
     }
-    else if l1.is_empty() || l2.windows(l1.len()).any(|w| *w == *l1) {
+    else if is_sublist(l1, l2) {
         Comparison::Sublist
     }
-    else if l2.is_empty() || l1.windows(l2.len()).any(|w| *w == *l2) {
+    else if is_sublist(l2, l1) {
         Comparison::Superlist
     }
     else {

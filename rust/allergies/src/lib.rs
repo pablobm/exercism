@@ -43,7 +43,7 @@ impl Allergies {
     pub fn allergies(&self) -> Vec<Allergen> {
         ALLERGENS.iter()
             .filter(|allergen| self.is_allergic_to(allergen))
-            .map(|a| a.clone())
+            .cloned()
             .collect()
     }
 }

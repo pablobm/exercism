@@ -1,17 +1,19 @@
+use std::collections::LinkedList;
+
 struct PhoneNumber {
     country: char,
-    area: Box<[char; 3]>,
-    exchange: Box<[char; 3]>,
-    subscriber: Box<[char; 4]>,
+    area: LinkedList<char>,
+    exchange: LinkedList<char>,
+    subscriber: LinkedList<char>,
 }
 
 impl PhoneNumber {
     pub fn new(number: &str) -> PhoneNumber {
         let mut tpl = PhoneNumber {
             country: '1',
-            area: Box::new(['x'; 3]),
-            exchange: Box::new(['x'; 3]),
-            subscriber: Box::new(['x'; 4]),
+            area: LinkedList::new(),
+            exchange: LinkedList::new(),
+            subscriber: LinkedList::new(),
         };
         let rev_numbers = number.chars()
             .filter(|n| n.is_numeric())
@@ -19,9 +21,9 @@ impl PhoneNumber {
 
         for (i, n) in rev_numbers.enumerate() {
             match i {
-                0...3 => tpl.subscriber[3-i] = n,
-                4...6 => tpl.exchange[6-i] = n,
-                7...9 => tpl.area[9-i] = n,
+                0...3 => tpl.subscriber.push_front(n),
+                4...6 => tpl.exchange.push_front(n),
+                7...9 => tpl.area.push_front(n),
                 10    => tpl.country = n,
                 _     => {},
             };
@@ -31,23 +33,27 @@ impl PhoneNumber {
     }
 
     pub fn is_valid(&self) -> bool {
-        self.area.iter().all(|&c| c != 'x') &&
-            self.exchange.iter().all(|&c| c != 'x') &&
-            self.subscriber.iter().all(|&c| c != 'x') &&
+        self.area.len() == 3 &&
+            self.exchange.len() == 3 &&
+            self.subscriber.len() == 4 &&
             self.country == '1'
     }
 
     pub fn area(&self) -> String {
-        self.area.iter().cloned().collect::<String>()
+        stringify(&self.area)
     }
 
     pub fn exchange(&self) -> String {
-        self.exchange.iter().cloned().collect::<String>()
+        stringify(&self.exchange)
     }
 
     pub fn subscriber(&self) -> String {
-        self.subscriber.iter().cloned().collect::<String>()
+        stringify(&self.subscriber)
     }
+}
+
+fn stringify(list: &LinkedList<char>) -> String {
+    list.iter().cloned().collect::<String>()
 }
 
 pub fn number(input: &str) -> Option<String> {

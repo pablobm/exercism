@@ -71,11 +71,7 @@ pub fn area_code(input: &str) -> Option<String> {
     let phone_number = PhoneNumber::new(input);
 
     if phone_number.is_valid() {
-        let string = format!(
-            "{}",
-            phone_number.area(),
-        );
-        Some(string)
+        Some(phone_number.area())
     }
     else {
         None

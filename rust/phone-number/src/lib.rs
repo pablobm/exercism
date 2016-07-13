@@ -15,11 +15,10 @@ impl PhoneNumber {
             exchange: LinkedList::new(),
             subscriber: LinkedList::new(),
         };
-        let rev_numbers = number.chars()
-            .filter(|n| n.is_numeric())
-            .rev();
+        let numbers = number.chars()
+            .filter(|n| n.is_numeric());
 
-        for (i, n) in rev_numbers.enumerate() {
+        for (i, n) in numbers.rev().enumerate() {
             match i {
                 0...3 => tpl.subscriber.push_front(n),
                 4...6 => tpl.exchange.push_front(n),

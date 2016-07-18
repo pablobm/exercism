@@ -9,12 +9,9 @@ defmodule Sublist do
 
   def compare(l1, l2) do
     cond do
-      length(l1) < length(l2) && l1 |> is_sublist_of(l2)
-        -> :sublist
-      length(l1) > length(l2) && l2 |> is_sublist_of(l1)
-        -> :superlist
-      true
-        -> :unequal
+      l1 |> is_sublist_of(l2) -> :sublist
+      l2 |> is_sublist_of(l1) -> :superlist
+      true                    -> :unequal
     end
   end
 

@@ -1,4 +1,4 @@
-RNA_COMPLEMENTS = {
+DNA_TO_RNA = {
     'C': 'G',
     'G': 'C',
     'T': 'A',
@@ -8,5 +8,5 @@ RNA_COMPLEMENTS = {
 def to_rna(nucleotides):
     transcription = []
     for n in nucleotides:
-        transcription.append(RNA_COMPLEMENTS[n])
+        transcription.append(DNA_TO_RNA[n])
     return ''.join(transcription)

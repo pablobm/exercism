@@ -42,12 +42,12 @@ fn capitalize(sentence: &String) -> String {
     let mut chars = sentence.chars();
     let head = chars.next();
 
-    let capitalized = match head {
+    let capital = match head {
         Some(c) => c.to_uppercase().next().unwrap().to_string(),
         None    => "".to_string(),
     };
 
-    capitalized + chars.as_str()
+    format!("{}{}", capital, chars.collect::<String>())
 }
 
 fn action_for(number: u32) -> &'static str {

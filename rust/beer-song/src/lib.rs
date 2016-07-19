@@ -1,12 +1,10 @@
 pub fn verse(initial: u32) -> String {
-    let next = next_number(initial);
-    let initial_phrase = phrase_for(initial);
-    let capitalized_initial_phrase = capitalize(&initial_phrase);
-    let action = action_for(initial);
-    let next_phrase = phrase_for(next);
-    format!("{} of beer on the wall, {} of beer.\n\
-        {}, {} of beer on the wall.\n\
-        ", capitalized_initial_phrase, initial_phrase, action, next_phrase)
+    match initial {
+        99 => verse_for(99, 98),
+         1 => verse_for( 1,  0),
+         0 => verse_for( 0, 99),
+         _ => verse_for(initial, initial-1),
+    }
 }
 
 pub fn sing(from_number: u32, to_number: u32) -> String {
@@ -17,24 +15,21 @@ pub fn sing(from_number: u32, to_number: u32) -> String {
     song
 }
 
-fn next_number(number: u32) -> u32 {
-    if number == 0 {
-        99
-    }
-    else {
-        number - 1
-    }
+fn verse_for(initial: u32, next: u32) -> String {
+    let initial_phrase = phrase_for(initial);
+    let capitalized_initial_phrase = capitalize(&initial_phrase);
+    let action = action_for(initial);
+    let next_phrase = phrase_for(next);
+    format!("{} of beer on the wall, {} of beer.\n\
+        {}, {} of beer on the wall.\n\
+        ", capitalized_initial_phrase, initial_phrase, action, next_phrase)
 }
 
 fn phrase_for(number: u32) -> String {
-    if number == 0 {
-        "no more bottles".to_string()
-    }
-    else if number == 1 {
-        "1 bottle".to_string()
-    }
-    else {
-        format!("{} bottles", number)
+    match number {
+        0 => "no more bottles".to_string(),
+        1 => "1 bottle".to_string(),
+        _ => format!("{} bottles", number),
     }
 }
 
@@ -51,13 +46,9 @@ fn capitalize(sentence: &String) -> String {
 }
 
 fn action_for(number: u32) -> &'static str {
-    if number == 0 {
-        "Go to the store and buy some more"
-    }
-    else if number == 1{
-        "Take it down and pass it around"
-    }
-    else {
-        "Take one down and pass it around"
+    match number {
+        0 => "Go to the store and buy some more",
+        1 => "Take it down and pass it around",
+        _ => "Take one down and pass it around",
     }
 }

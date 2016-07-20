@@ -1,6 +1,5 @@
 pub fn verse(initial: u32) -> String {
     match initial {
-        99 => verse_for(99, 98),
          1 => verse_for( 1,  0),
          0 => verse_for( 0, 99),
          _ => verse_for(initial, initial-1),

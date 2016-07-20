@@ -17,12 +17,11 @@ pub fn sing(from_number: u32, to_number: u32) -> String {
 
 fn verse_for(initial: u32, next: u32) -> String {
     let initial_phrase = phrase_for(initial);
-    let capitalized_initial_phrase = capitalize(&initial_phrase);
     let action = action_for(initial);
     let next_phrase = phrase_for(next);
-    format!("{} of beer on the wall, {} of beer.\n\
+    capitalize(&format!("{} of beer on the wall, {} of beer.\n\
         {}, {} of beer on the wall.\n\
-        ", capitalized_initial_phrase, initial_phrase, action, next_phrase)
+        ", initial_phrase, initial_phrase, action, next_phrase))
 }
 
 fn phrase_for(number: u32) -> String {

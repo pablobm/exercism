@@ -13,7 +13,7 @@ impl School {
 
     pub fn grades(&self) -> Vec<u16> {
         let mut grades : Vec<u16> = self.students.keys()
-            .map(|x| x.clone())
+            .cloned()
             .collect();
         grades.sort();
         grades

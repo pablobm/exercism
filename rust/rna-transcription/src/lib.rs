@@ -29,7 +29,7 @@ impl DeoxyribonucleicAcid {
         let rna_sequence = self.sequence.chars()
             .map(transcribe)
             .collect::<String>();
-        RibonucleicAcid::new(rna_sequence.as_str())
+        RibonucleicAcid::new(&rna_sequence)
     }
 }
 

@@ -19,29 +19,33 @@ impl ToString for Roman {
         let mut sections = LinkedList::new();
 
         let mut quotient = self.value;
-        sections.push_front(roman_string(quotient % 10, "I", "V", "X"));
+        sections.push_front(roman_string(quotient % 10, 'I', 'V', 'X'));
 
         quotient = quotient / 10;
         if quotient > 0 {
-            sections.push_front(roman_string(quotient % 10, "X", "L", "C"))
+            sections.push_front(roman_string(quotient % 10, 'X', 'L', 'C'));
         }
 
         quotient = quotient / 10;
         if quotient > 0 {
-            sections.push_front(roman_string(quotient % 10, "C", "D", "M"))
+            sections.push_front(roman_string(quotient % 10, 'C', 'D', 'M'));
         }
 
         quotient = quotient / 10;
         if quotient > 0 {
-            sections.push_front(roman_string(quotient % 10, "M", "!", "!"))
+            sections.push_front(roman_string(quotient % 10, 'M', '!', '!'));
         }
 
-        sections.iter().map(|x| x.clone() ).collect()
+        let mut result = String::new();
+        for letter in sections {
+            result.push_str(&letter);
+        }
+        result
     }
 }
 
-fn roman_string(digit: u16, one: &str, five: &str, ten: &str) -> String {
-    match digit {
+fn roman_string(digit: u16, one: char, five: char, ten: char) -> String {
+    let digits = match digit {
         0 => vec![],
         1 => vec![one],
         2 => vec![one, one],
@@ -53,8 +57,7 @@ fn roman_string(digit: u16, one: &str, five: &str, ten: &str) -> String {
         8 => vec![five, one, one, one],
         9 => vec![one, ten],
         _ => panic!("I don't know what to do with {}", digit),
-    }
-        .iter()
-        .map(|marks| marks.to_string())
-        .collect()
+    };
+
+    digits.iter().cloned().collect()
 }

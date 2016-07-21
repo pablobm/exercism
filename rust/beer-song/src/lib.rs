@@ -14,9 +14,9 @@ pub fn verse(initial: u32) -> String {
                 .to_string(),
          _ =>
              format!(
-                 "{} bottles of beer on the wall, {} bottles of beer.\n\
-                  Take one down and pass it around, {} bottles of beer on the wall.\n",
-                  initial, initial, initial-1
+                 "{0} bottles of beer on the wall, {0} bottles of beer.\n\
+                  Take one down and pass it around, {1} bottles of beer on the wall.\n",
+                  initial, initial-1,
              ),
     }
 }

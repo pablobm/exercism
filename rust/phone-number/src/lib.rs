@@ -1,7 +1,3 @@
-struct PhoneNumber {
-    number: Option<String>,
-}
-
 fn sanitize(input: &str) -> String {
     input.chars()
         .filter(|c| c.is_numeric())
@@ -25,43 +21,29 @@ fn parse(input: String) -> Option<String> {
     }
 }
 
-impl PhoneNumber {
-    pub fn new(input: &str) -> PhoneNumber {
-        PhoneNumber {
-            number: parse(sanitize(input)),
-        }
-    }
-
-    pub fn area(&self) -> Option<String> {
-        self.number.clone().map(|n| n[0..3].to_string())
-    }
-
-    pub fn exchange(&self) -> Option<String> {
-        self.number.clone().map(|n| n[3..6].to_string())
-    }
-
-    pub fn subscriber(&self) -> Option<String> {
-        self.number.clone().map(|n| n[6..10].to_string())
-    }
-}
-
 pub fn number(input: &str) -> Option<String> {
-    PhoneNumber::new(input).number
+    parse(sanitize(input))
 }
 
 pub fn area_code(input: &str) -> Option<String> {
-    PhoneNumber::new(input).area()
+    number(input).map(|n| n[0..3].to_string())
+}
+
+fn exchange(input: &str) -> Option<String> {
+    number(input).map(|n| n[3..6].to_string())
+}
+
+fn subscriber(input: &str) -> Option<String> {
+    number(input).map(|n| n[6..10].to_string())
 }
 
 pub fn pretty_print(input: &str) -> String {
-    let phone_number = PhoneNumber::new(input);
-
-    match phone_number.number {
+    match number(input) {
         Some(_) => format!(
             "({}) {}-{}",
-            phone_number.area().unwrap(),
-            phone_number.exchange().unwrap(),
-            phone_number.subscriber().unwrap(),
+            area_code(input).unwrap(),
+            exchange(input).unwrap(),
+            subscriber(input).unwrap(),
         ),
         None    => "invalid".to_string(),
     }

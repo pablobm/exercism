@@ -1,21 +1,13 @@
 fn sanitize(input: &str) -> String {
-    input.chars().filter(|c| c.is_numeric()).collect()
+    input.matches(char::is_numeric).collect()
 }
 
 fn parse(input: String) -> Option<String> {
-    if input.len() == 11 {
-        if input.starts_with("1") {
-            Some(input.chars().skip(1).take(10).collect())
-        }
-        else {
-            None
-        }
-    }
-    else if input.len() == 10 {
-        Some(input.to_string())
-    }
-    else {
-        None
+    match input.len() {
+        11 if input.starts_with("1") => Some(input[1..].to_string()),
+        11                           => None,
+        10                           => Some(input),
+        _                            => None,
     }
 }
 

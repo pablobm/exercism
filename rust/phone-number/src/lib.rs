@@ -5,7 +5,6 @@ fn sanitize(input: &str) -> String {
 fn parse(input: String) -> Option<String> {
     match input.len() {
         11 if input.starts_with("1") => Some(input[1..].to_string()),
-        11                           => None,
         10                           => Some(input),
         _                            => None,
     }

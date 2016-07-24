@@ -1,7 +1,5 @@
 fn sanitize(input: &str) -> String {
-    input.chars()
-        .filter(|c| c.is_numeric())
-        .collect()
+    input.chars().filter(|c| c.is_numeric()).collect()
 }
 
 fn parse(input: String) -> Option<String> {
@@ -29,22 +27,9 @@ pub fn area_code(input: &str) -> Option<String> {
     number(input).map(|n| n[0..3].to_string())
 }
 
-fn exchange(input: &str) -> Option<String> {
-    number(input).map(|n| n[3..6].to_string())
-}
-
-fn subscriber(input: &str) -> Option<String> {
-    number(input).map(|n| n[6..10].to_string())
-}
-
 pub fn pretty_print(input: &str) -> String {
     match number(input) {
-        Some(_) => format!(
-            "({}) {}-{}",
-            area_code(input).unwrap(),
-            exchange(input).unwrap(),
-            subscriber(input).unwrap(),
-        ),
+        Some(n) => format!("({}) {}-{}", &n[0..3], &n[3..6], &n[6..10]),
         None    => "invalid".to_string(),
     }
 }

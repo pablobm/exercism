@@ -1,3 +1,9 @@
+use std::ops::Range;
+
+const AREA_RANGE       : Range<usize> = 0..3;
+const EXCHANGE_RANGE   : Range<usize> = 3..6;
+const SUBSCRIBER_RANGE : Range<usize> = 6..10;
+
 fn sanitize(input: &str) -> String {
     input.matches(char::is_numeric).collect()
 }
@@ -15,12 +21,12 @@ pub fn number(input: &str) -> Option<String> {
 }
 
 pub fn area_code(input: &str) -> Option<String> {
-    number(input).map(|n| n[0..3].to_string())
+    number(input).map(|n| n[AREA_RANGE].to_string())
 }
 
 pub fn pretty_print(input: &str) -> String {
     match number(input) {
-        Some(n) => format!("({}) {}-{}", &n[0..3], &n[3..6], &n[6..10]),
+        Some(n) => format!("({}) {}-{}", &n[AREA_RANGE], &n[EXCHANGE_RANGE], &n[SUBSCRIBER_RANGE]),
         None    => "invalid".to_string(),
     }
 }

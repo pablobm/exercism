@@ -8,7 +8,20 @@ defmodule DNA do
   'UGAC'
   """
   @spec to_rna([char]) :: [char]
-  def to_rna(dna) do
+  def to_rna([]) do
+    []
+  end
 
+  def to_rna([h | t]) do
+    [dna_to_rna(h) | to_rna(t)]
+  end
+
+  defp dna_to_rna(n) do
+    %{
+      ?A => ?U,
+      ?T => ?A,
+      ?G => ?C,
+      ?C => ?G,
+    }[n]
   end
 end

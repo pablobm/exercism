@@ -1,16 +1,22 @@
 # Queen Attack
 
-Write a program that positions two queens on a chess board and indicates whether or not they are positioned so that they can attack each other.
+Welcome to Queen Attack on Exercism's Rust Track.
+If you need help running the tests or submitting your code, check out `HELP.md`.
+
+## Instructions
+
+Given the position of two queens on a chess board, indicate whether or not they
+are positioned so that they can attack each other.
 
 In the game of chess, a queen can attack pieces which are on the same
 row, column, or diagonal.
 
-A chessboard can be represented by an 8 by 8 array.
+A chessboard can be represented by an 8 by 8 array. The rows of a chessboard are known as ranks and columns are known as files.
 
 So if you're told the white queen is at (2, 3) and the black queen at
 (5, 6), then you'd know you've got a set-up like so:
 
-```plain
+```text
 _ _ _ _ _ _ _ _
 _ _ _ _ _ _ _ _
 _ _ _ W _ _ _ _
@@ -25,37 +31,61 @@ You'd also be able to answer whether the queens can attack each other.
 In this case, that answer would be yes, they can, because both pieces
 share a diagonal.
 
-## Rust Installation
+### Examples of queens attacking:
 
-Refer to the [exercism help page][help-page] for Rust installation and learning
-resources.
-
-## Writing the Code
-
-Execute the tests with:
-
-```bash
-$ cargo test
+```text
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ W _ _ _ _
+_ _ _ W _ _ _ _     _ B _ _ _ W _ _     _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+_ _ _ _ _ _ B _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ B _ _ _ _
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
 ```
 
-All but the first test have been ignored.  After you get the first test to
-pass, remove the ignore flag (`#[ignore]`) from the next test and get the tests
-to pass again.  The test file is located in the `tests` directory.   You can
-also remove the ignore flag from all the tests to get them to run all at once
-if you wish.
+### Examples of queens not interacting:
 
-Make sure to read the [Crates and Modules](https://doc.rust-lang.org/stable/book/crates-and-modules.html) chapter if you
-haven't already, it will help you with organizing your files.
+```text
 
-## Feedback, Issues, Pull Requests
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ W _ _ _ _
+_ _ _ _ _ _ _ _     _ _ _ _ _ W _ _     _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+_ _ _ _ W _ _ _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+_ _ _ _ _ _ B _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _     _ _ B _ _ _ _ _     _ _ _ _ _ _ B _
+_ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _     _ _ _ _ _ _ _ _
+```
 
-The [exercism/xrust](https://github.com/exercism/xrust) repository on GitHub is the home for all of the Rust exercises. If you have feedback about an exercise, or want to help implement new exercises, head over there and create an issue. Members of the [rust track team](https://github.com/orgs/exercism/teams/rust) are happy to help!
-
-If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/x-common/blob/master/CONTRIBUTING.md).
-
-[help-page]: http://exercism.io/languages/rust
-[crates-and-modules]: http://doc.rust-lang.org/stable/book/crates-and-modules.html
+B and W stand for **Black** and **White**, the two sides competing
+against each other in a game of chess. For this exercise you do not need to know which side
+the queens are on.
 
 ## Source
 
-J Dalbey's Programming Practice problems [http://users.csc.calpoly.edu/~jdalbey/103/Projects/ProgrammingPractice.html](http://users.csc.calpoly.edu/~jdalbey/103/Projects/ProgrammingPractice.html)
+### Created by
+
+- @IanWhitney
+
+### Contributed to by
+
+- @ashleygwilliams
+- @coriolinus
+- @cwhakes
+- @efx
+- @ErikSchierboom
+- @IanWhitney
+- @lutostag
+- @mkantor
+- @navossoc
+- @nfiles
+- @petertseng
+- @rofrol
+- @stringparser
+- @xakon
+- @ZapAnton
+
+### Based on
+
+J Dalbey's Programming Practice problems - http://users.csc.calpoly.edu/~jdalbey/103/Projects/ProgrammingPractice.html

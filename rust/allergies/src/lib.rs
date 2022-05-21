@@ -1,5 +1,7 @@
+type AllergiesBitmap = usize;
+
 pub struct Allergies {
-    bitmap: u8,
+    bitmap: AllergiesBitmap,
 }
 
 #[derive(Debug)]
@@ -30,14 +32,14 @@ static ALLERGENS: &'static [Allergen; 8] = &[
 ];
 
 impl Allergies {
-    pub fn new(bitmap: u8) -> Allergies {
+    pub fn new(bitmap: AllergiesBitmap) -> Allergies {
         Allergies {
             bitmap: bitmap,
         }
     }
 
     pub fn is_allergic_to(&self, allergen: &Allergen) -> bool {
-        self.bitmap & *allergen as u8 != 0
+        self.bitmap & *allergen as AllergiesBitmap != 0
     }
 
     pub fn allergies(&self) -> Vec<Allergen> {

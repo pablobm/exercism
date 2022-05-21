@@ -13,13 +13,13 @@ pub struct Queen {
 
 impl ChessPosition {
     pub fn new(rank: i8, file: i8)
-        -> Result<ChessPosition, &'static str>
+        -> Option<ChessPosition>
     {
         match (rank, file) {
             (0..=7, 0..=7)
-                => Ok(ChessPosition{ rank: rank, file: file }),
+                => Some(ChessPosition{ rank: rank, file: file }),
             _
-                => Err("Invalid Position"),
+                => None,
         }
     }
 }

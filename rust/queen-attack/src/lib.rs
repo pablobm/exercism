@@ -16,7 +16,7 @@ impl ChessPosition {
         -> Result<ChessPosition, &'static str>
     {
         match (rank, file) {
-            (0...7, 0...7)
+            (0..=7, 0..=7)
                 => Ok(ChessPosition{ rank: rank, file: file }),
             _
                 => Err("Invalid Position"),

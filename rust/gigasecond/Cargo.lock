@@ -3,63 +3,33 @@
 version = 3
 
 [[package]]
-name = "chrono"
-version = "0.2.19"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "02213366ccdcc0264cdeb4a37e4a658656d43ea3a024e715a650529a5a4b74c7"
+name = "gigasecond"
+version = "2.0.0"
 dependencies = [
- "num",
  "time",
 ]
 
 [[package]]
-name = "gigasecond"
-version = "0.0.0"
-dependencies = [
- "chrono",
-]
-
-[[package]]
-name = "kernel32-sys"
-version = "0.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b5b5e7edf375e6d26243bde172f1d5ed1446f4a766fc9b7006e1fd27258243f1"
-dependencies = [
- "winapi",
- "winapi-build",
-]
-
-[[package]]
 name = "libc"
-version = "0.2.7"
+version = "0.2.126"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4870ef6725dde13394134e587e4ab4eca13cb92e916209a31c851b49131d3c75"
+checksum = "349d5a591cd28b49e1d1037471617a32ddcda5731b99419008085f72d5a53836"
 
 [[package]]
-name = "num"
-version = "0.1.31"
+name = "num_threads"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "be45b3e341522564415a07118d7cf44896d0919e7a1bb21d59ad82af48256324"
+checksum = "2819ce041d2ee131036f4fc9d6ae7ae125a3a40e97ba64d04fe799ad9dabbb44"
+dependencies = [
+ "libc",
+]
 
 [[package]]
 name = "time"
-version = "0.1.34"
+version = "0.3.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8c4aeaa1c95974f5763c3a5ac0db95a19793589bcea5d22e161b5587e3aad029"
+checksum = "c2702e08a7a860f005826c6815dcac101b19b5eb330c27fe4a5928fec1d20ddd"
 dependencies = [
- "kernel32-sys",
  "libc",
- "winapi",
+ "num_threads",
 ]
-
-[[package]]
-name = "winapi"
-version = "0.2.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dc3583688b861fcd83c2823d37cf2cd2446c233dd7ba3f97884d1a7302817537"
-
-[[package]]
-name = "winapi-build"
-version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2d315eee3b34aca4797b2da6b13ed88266e6d612562a0c46390af8299fc699bc"

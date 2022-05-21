@@ -1,8 +1,7 @@
-extern crate chrono;
-use chrono::DateTime;
-use chrono::Duration;
-use chrono::UTC;
+extern crate time;
+use time::PrimitiveDateTime as DateTime;
+use time::Duration;
 
-pub fn after(time: DateTime<UTC>) -> DateTime<UTC> {
+pub fn after(time: DateTime) -> DateTime {
     time + Duration::seconds(1_000_000_000)
 }

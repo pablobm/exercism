@@ -1,55 +1,70 @@
 # Phone Number
 
-Write a program that cleans up user-entered phone numbers so that they can be sent SMS messages.
+Welcome to Phone Number on Exercism's Rust Track.
+If you need help running the tests or submitting your code, check out `HELP.md`.
 
-The rules are as follows:
+## Instructions
 
-- If the phone number is less than 10 digits assume that it is bad
-  number
-- If the phone number is 10 digits assume that it is good
-- If the phone number is 11 digits and the first number is 1, trim the 1
-  and use the last 10 digits
-- If the phone number is 11 digits and the first number is not 1, then
-  it is a bad number
-- If the phone number is more than 11 digits assume that it is a bad
-  number
+Clean up user-entered phone numbers so that they can be sent SMS messages.
 
-We've provided tests, now make them pass.
+The **North American Numbering Plan (NANP)** is a telephone numbering system used by many countries in North America like the United States, Canada or Bermuda. All NANP-countries share the same international country code: `1`.
 
-Hint: Only make one test pass at a time. Disable the others, then flip
-each on in turn after you get the current failing one to pass.
+NANP numbers are ten-digit numbers consisting of a three-digit Numbering Plan Area code, commonly known as *area code*, followed by a seven-digit local number. The first three digits of the local number represent the *exchange code*, followed by the unique four-digit number which is the *subscriber number*.
 
-## Rust Installation
+The format is usually represented as
 
-Refer to the [exercism help page][help-page] for Rust installation and learning
-resources.
-
-## Writing the Code
-
-Execute the tests with:
-
-```bash
-$ cargo test
+```text
+(NXX)-NXX-XXXX
 ```
 
-All but the first test have been ignored.  After you get the first test to
-pass, remove the ignore flag (`#[ignore]`) from the next test and get the tests
-to pass again.  The test file is located in the `tests` directory.   You can
-also remove the ignore flag from all the tests to get them to run all at once
-if you wish.
+where `N` is any digit from 2 through 9 and `X` is any digit from 0 through 9.
 
-Make sure to read the [Crates and Modules](https://doc.rust-lang.org/stable/book/crates-and-modules.html) chapter if you
-haven't already, it will help you with organizing your files.
+Your task is to clean up differently formatted telephone numbers by removing punctuation and the country code (1) if present.
 
-## Feedback, Issues, Pull Requests
+For example, the inputs
+- `+1 (613)-995-0253`
+- `613-995-0253`
+- `1 613 995 0253`
+- `613.995.0253`
 
-The [exercism/xrust](https://github.com/exercism/xrust) repository on GitHub is the home for all of the Rust exercises. If you have feedback about an exercise, or want to help implement new exercises, head over there and create an issue. Members of the [rust track team](https://github.com/orgs/exercism/teams/rust) are happy to help!
+should all produce the output
 
-If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/x-common/blob/master/CONTRIBUTING.md).
+`6139950253`
 
-[help-page]: http://exercism.io/languages/rust
-[crates-and-modules]: http://doc.rust-lang.org/stable/book/crates-and-modules.html
+**Note:** As this exercise only deals with telephone numbers used in NANP-countries, only 1 is considered a valid country code.
 
 ## Source
 
-Event Manager by JumpstartLab [http://tutorials.jumpstartlab.com/projects/eventmanager.html](http://tutorials.jumpstartlab.com/projects/eventmanager.html)
+### Created by
+
+- @EduardoBautista
+
+### Contributed to by
+
+- @andrewclarkson
+- @ashleygwilliams
+- @coriolinus
+- @cscorley
+- @cwhakes
+- @EduardoBautista
+- @efx
+- @ErikSchierboom
+- @IanWhitney
+- @kytrinyx
+- @lutostag
+- @mkantor
+- @navossoc
+- @nfiles
+- @petertseng
+- @pminten
+- @rofrol
+- @Stargator
+- @stevejb71
+- @stringparser
+- @vinmaster
+- @xakon
+- @ZapAnton
+
+### Based on
+
+Event Manager by JumpstartLab - http://tutorials.jumpstartlab.com/projects/eventmanager.html

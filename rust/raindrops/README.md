@@ -1,54 +1,54 @@
 # Raindrops
 
-Write a program that converts a number to a string, the contents of which depends on the number's prime factors.
+Welcome to Raindrops on Exercism's Rust Track.
+If you need help running the tests or submitting your code, check out `HELP.md`.
 
-- If the number contains 3 as a prime factor, output 'Pling'.
-- If the number contains 5 as a prime factor, output 'Plang'.
-- If the number contains 7 as a prime factor, output 'Plong'.
-- If the number does not contain 3, 5, or 7 as a prime factor,
-  just pass the number's digits straight through.
+## Instructions
+
+Your task is to convert a number into a string that contains raindrop sounds corresponding to certain potential factors. A factor is a number that evenly divides into another number, leaving no remainder. The simplest way to test if a one number is a factor of another is to use the [modulo operation](https://en.wikipedia.org/wiki/Modulo_operation).
+
+The rules of `raindrops` are that if a given number:
+
+- has 3 as a factor, add 'Pling' to the result.
+- has 5 as a factor, add 'Plang' to the result.
+- has 7 as a factor, add 'Plong' to the result.
+- _does not_ have any of 3, 5, or 7 as a factor, the result should be the digits of the number.
 
 ## Examples
 
-- 28's prime-factorization is 2, 2, 7.
-  - In raindrop-speak, this would be a simple "Plong".
-- 1755 prime-factorization is 3, 3, 3, 5, 13.
-  - In raindrop-speak, this would be a "PlingPlang".
-- The prime factors of 34 are 2 and 17.
-  - Raindrop-speak doesn't know what to make of that,
-    so it just goes with the straightforward "34".
-
-## Rust Installation
-
-Refer to the [exercism help page][help-page] for Rust installation and learning
-resources.
-
-## Writing the Code
-
-Execute the tests with:
-
-```bash
-$ cargo test
-```
-
-All but the first test have been ignored.  After you get the first test to
-pass, remove the ignore flag (`#[ignore]`) from the next test and get the tests
-to pass again.  The test file is located in the `tests` directory.   You can
-also remove the ignore flag from all the tests to get them to run all at once
-if you wish.
-
-Make sure to read the [Crates and Modules](https://doc.rust-lang.org/stable/book/crates-and-modules.html) chapter if you
-haven't already, it will help you with organizing your files.
-
-## Feedback, Issues, Pull Requests
-
-The [exercism/xrust](https://github.com/exercism/xrust) repository on GitHub is the home for all of the Rust exercises. If you have feedback about an exercise, or want to help implement new exercises, head over there and create an issue. Members of the [rust track team](https://github.com/orgs/exercism/teams/rust) are happy to help!
-
-If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/x-common/blob/master/CONTRIBUTING.md).
-
-[help-page]: http://exercism.io/languages/rust
-[crates-and-modules]: http://doc.rust-lang.org/stable/book/crates-and-modules.html
+- 28 has 7 as a factor, but not 3 or 5, so the result would be "Plong".
+- 30 has both 3 and 5 as factors, but not 7, so the result would be "PlingPlang".
+- 34 is not factored by 3, 5, or 7, so the result would be "34".
 
 ## Source
 
-A variation on a famous interview question intended to weed out potential candidates. [http://jumpstartlab.com](http://jumpstartlab.com)
+### Created by
+
+- @EduardoBautista
+
+### Contributed to by
+
+- @ashleygwilliams
+- @ClashTheBunny
+- @coriolinus
+- @cwhakes
+- @eddyp
+- @EduardoBautista
+- @efx
+- @ErikSchierboom
+- @IanWhitney
+- @kytrinyx
+- @leoyvens
+- @lutostag
+- @mkantor
+- @nfiles
+- @petertseng
+- @rofrol
+- @stevejb71
+- @stringparser
+- @xakon
+- @ZapAnton
+
+### Based on
+
+A variation on FizzBuzz, a famous technical interview question that is intended to weed out potential candidates. That question is itself derived from Fizz Buzz, a popular children's game for teaching division. - https://en.wikipedia.org/wiki/Fizz_buzz

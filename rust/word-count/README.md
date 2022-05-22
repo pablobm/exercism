@@ -1,48 +1,82 @@
 # Word Count
 
-Write a program that given a phrase can count the occurrences of each word in that phrase.
+Welcome to Word Count on Exercism's Rust Track.
+If you need help running the tests or submitting your code, check out `HELP.md`.
 
-For example for the input `"olly olly in come free"`
+## Instructions
 
-```plain
-olly: 2
-in: 1
-come: 1
-free: 1
+Given a phrase, count the occurrences of each _word_ in that phrase.
+
+For the purposes of this exercise you can expect that a _word_ will always be one of:
+
+1. A _number_ composed of one or more ASCII digits (i.e. "0" or "1234") OR
+2. A _simple word_ composed of one or more ASCII letters (i.e. "a" or "they") OR
+3. A _contraction_ of two _simple words_ joined by a single apostrophe (i.e. "it's" or "they're")
+
+When counting words you can assume the following rules:
+
+1. The count is _case insensitive_ (i.e. "You", "you", and "YOU" are 3 uses of the same word)
+2. The count is _unordered_; the tests will ignore how words and counts are ordered
+3. Other than the apostrophe in a _contraction_ all forms of _punctuation_ are ignored
+4. The words can be separated by _any_ form of whitespace (i.e. "\t", "\n", " "), or
+   external punctuation.
+
+For example, for the phrase `"That's the password: 'PASSWORD 123'!", cried the Special Agent.\nSo I fled.` the count would be:
+
+```text
+that's: 1
+the: 2
+password: 2
+123: 1
+cried: 1
+special: 1
+agent: 1
+so: 1
+i: 1
+fled: 1
 ```
 
+For the phrase `"one,two,three"` the count would be:
 
-## Rust Installation
-
-Refer to the [exercism help page][help-page] for Rust installation and learning
-resources.
-
-## Writing the Code
-
-Execute the tests with:
-
-```bash
-$ cargo test
+```text
+one: 1
+two: 1
+three: 1
 ```
-
-All but the first test have been ignored.  After you get the first test to
-pass, remove the ignore flag (`#[ignore]`) from the next test and get the tests
-to pass again.  The test file is located in the `tests` directory.   You can
-also remove the ignore flag from all the tests to get them to run all at once
-if you wish.
-
-Make sure to read the [Crates and Modules](https://doc.rust-lang.org/stable/book/crates-and-modules.html) chapter if you
-haven't already, it will help you with organizing your files.
-
-## Feedback, Issues, Pull Requests
-
-The [exercism/xrust](https://github.com/exercism/xrust) repository on GitHub is the home for all of the Rust exercises. If you have feedback about an exercise, or want to help implement new exercises, head over there and create an issue. Members of the [rust track team](https://github.com/orgs/exercism/teams/rust) are happy to help!
-
-If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/x-common/blob/master/CONTRIBUTING.md).
-
-[help-page]: http://exercism.io/languages/rust
-[crates-and-modules]: http://doc.rust-lang.org/stable/book/crates-and-modules.html
 
 ## Source
+
+### Created by
+
+- @EduardoBautista
+
+### Contributed to by
+
+- @andrewclarkson
+- @ashleygwilliams
+- @AvasDream
+- @ClashTheBunny
+- @coriolinus
+- @cwhakes
+- @EduardoBautista
+- @efx
+- @ErikSchierboom
+- @IanWhitney
+- @ijanos
+- @jonmcalder
+- @kytrinyx
+- @lutostag
+- @mkantor
+- @navossoc
+- @nfiles
+- @petertseng
+- @pminten
+- @rofrol
+- @stringparser
+- @xakon
+- @yawpitch
+- @ZapAnton
+
+### Based on
 
 This is a classic toy problem, but we were reminded of it by seeing it in the Go Tour.

@@ -1,6 +1,11 @@
 # Rna Transcription
 
-Write a program that, given a DNA strand, returns its RNA complement (per RNA transcription).
+Welcome to Rna Transcription on Exercism's Rust Track.
+If you need help running the tests or submitting your code, check out `HELP.md`.
+
+## Instructions
+
+Given a DNA strand, return its RNA complement (per RNA transcription).
 
 Both DNA and RNA strands are a sequence of nucleotides.
 
@@ -18,37 +23,48 @@ each nucleotide with its complement:
 * `T` -> `A`
 * `A` -> `U`
 
-## Rust Installation
+By using private fields in structs with public `new` functions returning
+`Option` or `Result` (as here with `DNA::new` & `RNA::new`), we can guarantee
+that the internal representation of `DNA` is correct. Because every valid DNA
+string has a valid RNA string, we don't need to return a `Result`/`Option` from
+`into_rna`.
 
-Refer to the [exercism help page][help-page] for Rust installation and learning
-resources.
-
-## Writing the Code
-
-Execute the tests with:
-
-```bash
-$ cargo test
-```
-
-All but the first test have been ignored.  After you get the first test to
-pass, remove the ignore flag (`#[ignore]`) from the next test and get the tests
-to pass again.  The test file is located in the `tests` directory.   You can
-also remove the ignore flag from all the tests to get them to run all at once
-if you wish.
-
-Make sure to read the [Crates and Modules](https://doc.rust-lang.org/stable/book/crates-and-modules.html) chapter if you
-haven't already, it will help you with organizing your files.
-
-## Feedback, Issues, Pull Requests
-
-The [exercism/xrust](https://github.com/exercism/xrust) repository on GitHub is the home for all of the Rust exercises. If you have feedback about an exercise, or want to help implement new exercises, head over there and create an issue. Members of the [rust track team](https://github.com/orgs/exercism/teams/rust) are happy to help!
-
-If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/x-common/blob/master/CONTRIBUTING.md).
-
-[help-page]: http://exercism.io/languages/rust
-[crates-and-modules]: http://doc.rust-lang.org/stable/book/crates-and-modules.html
+This explains the type signatures you will see in the tests.
 
 ## Source
 
-Rosalind [http://rosalind.info/problems/rna](http://rosalind.info/problems/rna)
+### Created by
+
+- @EduardoBautista
+
+### Contributed to by
+
+- @andrewclarkson
+- @AndrewKvalheim
+- @ashleygwilliams
+- @benreyn
+- @coriolinus
+- @cwhakes
+- @EduardoBautista
+- @efx
+- @ErikSchierboom
+- @etrepum
+- @IanWhitney
+- @kytrinyx
+- @lutostag
+- @mkantor
+- @nfiles
+- @petertseng
+- @pminten
+- @rofrol
+- @rpottsoh
+- @samcday
+- @shingtaklam1324
+- @stringparser
+- @TheDarkula
+- @xakon
+- @ZapAnton
+
+### Based on
+
+Hyperphysics - http://hyperphysics.phy-astr.gsu.edu/hbase/Organic/transcription.html

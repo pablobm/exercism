@@ -1,62 +1,59 @@
 # Nucleotide Count
 
-Given a DNA string, compute how many times each nucleotide occurs in the string.
+Welcome to Nucleotide Count on Exercism's Rust Track.
+If you need help running the tests or submitting your code, check out `HELP.md`.
 
-DNA is represented by an alphabet of the following symbols: 'A', 'C',
-'G', and 'T'.
+## Instructions
 
-Each symbol represents a nucleotide, which is a fancy name for the
-particular molecules that happen to make up a large part of DNA.
+Each of us inherits from our biological parents a set of chemical instructions known as DNA that influence how our bodies are constructed. All known life depends on DNA!
 
-Shortest intro to biochemistry EVAR:
+> Note: You do not need to understand anything about nucleotides or DNA to complete this exercise.
 
-- twigs are to birds nests as
-- nucleotides are to DNA and RNA as
-- amino acids are to proteins as
-- sugar is to starch as
-- oh crap lipids
+DNA is a long chain of other chemicals and the most important are the four nucleotides, adenine, cytosine, guanine and thymine. A single DNA chain can contain billions of these four nucleotides and the order in which they occur is important!
+We call the order of these nucleotides in a bit of DNA a "DNA sequence".
 
-I'm not going to talk about lipids because they're crazy complex.
+We represent a DNA sequence as an ordered collection of these four nucleotides and a common way to do that is with a string of characters such as "ATTACG" for a DNA sequence of 6 nucleotides.
+'A' for adenine, 'C' for cytosine, 'G' for guanine, and 'T' for thymine.
 
-So back to nucleotides.
+Given a string representing a DNA sequence, count how many of each nucleotide is present.
+If the string contains characters that aren't A, C, G, or T then it is invalid and you should signal an error.
 
-DNA contains four types of them: adenine (`A`), cytosine (`C`), guanine
-(`G`), and thymine (`T`).
+For example:
 
-RNA contains a slightly different set of nucleotides, but we don't care
-about that for now.
-
-## Rust Installation
-
-Refer to the [exercism help page][help-page] for Rust installation and learning
-resources.
-
-## Writing the Code
-
-Execute the tests with:
-
-```bash
-$ cargo test
 ```
-
-All but the first test have been ignored.  After you get the first test to
-pass, remove the ignore flag (`#[ignore]`) from the next test and get the tests
-to pass again.  The test file is located in the `tests` directory.   You can
-also remove the ignore flag from all the tests to get them to run all at once
-if you wish.
-
-Make sure to read the [Crates and Modules](https://doc.rust-lang.org/stable/book/crates-and-modules.html) chapter if you
-haven't already, it will help you with organizing your files.
-
-## Feedback, Issues, Pull Requests
-
-The [exercism/xrust](https://github.com/exercism/xrust) repository on GitHub is the home for all of the Rust exercises. If you have feedback about an exercise, or want to help implement new exercises, head over there and create an issue. Members of the [rust track team](https://github.com/orgs/exercism/teams/rust) are happy to help!
-
-If you want to know more about Exercism, take a look at the [contribution guide](https://github.com/exercism/x-common/blob/master/CONTRIBUTING.md).
-
-[help-page]: http://exercism.io/languages/rust
-[crates-and-modules]: http://doc.rust-lang.org/stable/book/crates-and-modules.html
+"GATTACA" -> 'A': 3, 'C': 1, 'G': 1, 'T': 2
+"INVALID" -> error
+```
 
 ## Source
 
-The Calculating DNA Nucleotides_problem at Rosalind [http://rosalind.info/problems/dna/](http://rosalind.info/problems/dna/)
+### Created by
+
+- @EduardoBautista
+
+### Contributed to by
+
+- @andrewclarkson
+- @ashleygwilliams
+- @cmcaine
+- @coriolinus
+- @cwhakes
+- @Dysp
+- @EduardoBautista
+- @efx
+- @ErikSchierboom
+- @IanWhitney
+- @kytrinyx
+- @lutostag
+- @mkantor
+- @nfiles
+- @petertseng
+- @pminten
+- @rofrol
+- @stringparser
+- @xakon
+- @ZapAnton
+
+### Based on
+
+The Calculating DNA Nucleotides_problem at Rosalind - http://rosalind.info/problems/dna/

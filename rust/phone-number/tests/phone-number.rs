@@ -1,80 +1,112 @@
-extern crate phone_number as phone;
+use phone_number as phone;
 
-fn to_some_string(s: &str) -> Option<String> {
-    Some(s.to_string())
+fn process_clean_case(number: &str, expected: Option<&str>) {
+    assert_eq!(phone::number(number), expected.map(|x| x.to_string()));
 }
 
 #[test]
-fn test_number_cleans() {
-    assert_eq!(phone::number("(123) 456-7890"), to_some_string("1234567890"));
+fn test_cleans_the_number() {
+    process_clean_case("(223) 456-7890", Some("2234567890"));
 }
 
 #[test]
-fn test_number_cleans_with_dots() {
-    assert_eq!(phone::number("123.456.7890"), to_some_string("1234567890"));
+#[ignore]
+fn test_cleans_numbers_with_dots() {
+    process_clean_case("223.456.7890", Some("2234567890"));
 }
 
 #[test]
-fn test_valid_when_11_digits_and_first_is_1() {
-    assert_eq!(phone::number("11234567890"), to_some_string("1234567890"));
+#[ignore]
+fn test_cleans_numbers_with_multiple_spaces() {
+    process_clean_case("223 456   7890   ", Some("2234567890"));
 }
 
 #[test]
-fn test_invalid_when_11_digits() {
-    assert_eq!(phone::number("21234567890"), None);
-}
-
-#[test]
+#[ignore]
 fn test_invalid_when_9_digits() {
-    assert_eq!(phone::number("123456789"), None);
+    process_clean_case("123456789", None);
 }
 
 #[test]
-fn test_invalid_when_empty() {
-    assert_eq!(phone::number(""), None);
+#[ignore]
+fn test_invalid_when_11_digits_does_not_start_with_a_1() {
+    process_clean_case("22234567890", None);
 }
 
 #[test]
-fn test_invalid_when_no_digits_present() {
-    assert_eq!(phone::number(" (-) "), None);
+#[ignore]
+fn test_valid_when_11_digits_and_starting_with_1() {
+    process_clean_case("12234567890", Some("2234567890"));
 }
 
 #[test]
-fn test_valid_with_leading_characters() {
-    assert_eq!(phone::number("my number is 123 456 7890"), to_some_string("1234567890"));
+#[ignore]
+fn test_valid_when_11_digits_and_starting_with_1_even_with_punctuation() {
+    process_clean_case("+1 (223) 456-7890", Some("2234567890"));
 }
 
 #[test]
-fn test_valid_with_trailing_characters() {
-    assert_eq!(phone::number("123 456 7890 - bob"), to_some_string("1234567890"));
+#[ignore]
+fn test_invalid_when_more_than_11_digits() {
+    process_clean_case("321234567890", None);
 }
 
 #[test]
-fn test_area_code() {
-    assert_eq!(phone::area_code("1234567890"), to_some_string("123"));
+#[ignore]
+fn test_invalid_with_letters() {
+    process_clean_case("123-abc-7890", None);
 }
 
 #[test]
-fn test_area_code_with_full_us_phone_number() {
-    assert_eq!(phone::area_code("18234567890"), to_some_string("823"));
+#[ignore]
+fn test_invalid_with_punctuations() {
+    process_clean_case("123-@:!-7890", None);
 }
 
 #[test]
-fn test_area_code_with_invalid() {
-    assert_eq!(phone::area_code("1234161567890"), None);
+#[ignore]
+fn test_invalid_if_area_code_starts_with_1_on_valid_11digit_number() {
+    process_clean_case("1 (123) 456-7890", None);
 }
 
 #[test]
-fn test_pretty_print() {
-    assert_eq!(phone::pretty_print("1234567890"), "(123) 456-7890");
+#[ignore]
+fn test_invalid_if_area_code_starts_with_0_on_valid_11digit_number() {
+    process_clean_case("1 (023) 456-7890", None);
 }
 
 #[test]
-fn test_pretty_print_with_full_us_phone_number() {
-    assert_eq!(phone::pretty_print("11234567890"), "(123) 456-7890");
+#[ignore]
+fn test_invalid_if_area_code_starts_with_1() {
+    process_clean_case("(123) 456-7890", None);
 }
 
 #[test]
-fn test_pretty_print_with_invalid() {
-    assert_eq!(phone::pretty_print("1186234567890"), "invalid");
+#[ignore]
+fn test_invalid_if_exchange_code_starts_with_1() {
+    process_clean_case("(223) 156-7890", None);
+}
+
+#[test]
+#[ignore]
+fn test_invalid_if_exchange_code_starts_with_0() {
+    process_clean_case("(223) 056-7890", None);
+}
+
+#[test]
+#[ignore]
+fn test_invalid_if_exchange_code_starts_with_1_on_valid_11digit_number() {
+    process_clean_case("1 (223) 156-7890", None);
+}
+
+#[test]
+#[ignore]
+fn test_invalid_if_exchange_code_starts_with_0_on_valid_11digit_number() {
+    process_clean_case("1 (223) 056-7890", None);
+}
+
+#[test]
+#[ignore]
+fn test_invalid_if_area_code_starts_with_0() {
+    process_clean_case("(023) 456-7890", None);
 }

@@ -1,14 +1,24 @@
 pub fn reply(input: &str) -> &str {
-    if input.is_empty() {
+    let trimmed = input.trim();
+
+    if trimmed.is_empty() {
         "Fine. Be that way!"
     }
-    else if input.to_uppercase() == input {
-        "Whoa, chill out!"
+    else if has_letters(trimmed) && trimmed.to_uppercase() == trimmed {
+        if trimmed.ends_with("?") {
+            "Calm down, I know what I'm doing!"
+        } else {
+            "Whoa, chill out!"
+        }
     }
-    else if input.ends_with('?') {
+    else if trimmed.ends_with('?') {
         "Sure."
     }
     else {
         "Whatever."
     }
+}
+
+fn has_letters(input: &str) -> bool {
+    input.matches(char::is_alphabetic).count() != 0
 }

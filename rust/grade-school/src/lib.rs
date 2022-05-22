@@ -20,12 +20,15 @@ impl School {
     }
 
     pub fn add(&mut self, grade: u16, name: &str) {
-        let mut names = self.students.entry(grade).or_insert(vec![]);
+        let names = self.students.entry(grade).or_insert(vec![]);
         names.push(name.to_string());
         names.sort();
     }
 
-    pub fn grade(&self, grade: u16) -> Option<&Vec<String>> {
-        self.students.get(&grade)
+    pub fn grade(&self, grade: u16) -> Vec<String> {
+        match self.students.get(&grade) {
+            Some(result) => result.clone(),
+            None => Vec::new(),
+        }
     }
 }

@@ -4,20 +4,41 @@ const AREA_RANGE       : Range<usize> = 0..3;
 const EXCHANGE_RANGE   : Range<usize> = 3..6;
 const SUBSCRIBER_RANGE : Range<usize> = 6..10;
 
-fn sanitize(input: &str) -> String {
-    input.matches(char::is_numeric).collect()
+fn clean_number(input: &str) -> Option<String> {
+    let mut output = String::new();
+    for c in input.chars() {
+        match c {
+            n if n.is_ascii_digit() => output.push(n),
+            '+' | '-' | ' ' | '(' | ')' | '.' => (),
+            _ => return None
+        }
+    }
+    Some(output)
 }
 
-fn parse(input: String) -> Option<String> {
-    match input.len() {
-        11 if input.starts_with("1") => Some(input[1..].to_string()),
-        10                           => Some(input),
-        _                            => None,
+fn cut_to_length(input: String) -> Option<String> {
+    if input.len() == 10 {
+        Some(input)
+    } else if input.len() == 11 && input.chars().next() == Some('1') {
+        Some(input[1..11].to_string())
+    } else {
+        None
     }
 }
 
+fn ensure_valid_digits(input: String) -> Option<String> {
+    for (i, c) in input.char_indices() {
+        if (i == 0 || i == 3) && (c == '0' || c == '1') {
+            return None
+        }
+    }
+    Some(input)
+}
+
 pub fn number(input: &str) -> Option<String> {
-    parse(sanitize(input))
+    clean_number(input)
+        .and_then(cut_to_length)
+        .and_then(ensure_valid_digits)
 }
 
 pub fn area_code(input: &str) -> Option<String> {
